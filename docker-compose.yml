@@ -10,8 +10,7 @@ services:
             mode: global
             placement:
                 constraints:
-                    - node.labels.type == master
-                    - node.labels.spark == true
+                    - node.hostname == docker-master
         environment:
             MASTER: spark://master:7077
             SPARK_PUBLIC_DNS: $EXTERNAL_IP
@@ -26,20 +25,14 @@ services:
             - 6066
             - 8080
             - 4040
-        volumes:
-            - /mnt/spark_data:/data
-            - /data1:/data1
-            - /data2:/data2
-            - /data3:/data3
-            - /data4:/data4
-        extra_hosts:
-            - "kafka1:13.65.242.208"
-            - "zk1:13.65.242.208"
-            - "kafka2:13.84.50.174"
-            - "zk2:13.84.50.174"
-            - "kafka3:104.210.144.204"
-            - "zk3:104.210.144.204"
-
+        ports:
+           - 666:666
+           - 667:667
+           - 4040:4040
+           - 4041:4041
+           - 6066:6066
+           - 7077:7077
+           - 8080:8080
     worker:
         image: sauloricci/docker-spark-worker
         command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
@@ -48,8 +41,7 @@ services:
             mode: global
             placement:
                 constraints: 
-                    - node.labels.type == worker
-                    - node.labels.spark == true
+                    - node.hostname == docker-worker
         environment:
             SPARK_WORKER_PORT: 8881
             SPARK_WORKER_WEBUI_PORT: 8081
@@ -63,55 +55,3 @@ services:
             - 7015
             - 7016
             - 8881
-        volumes:
-            - /data1:/data1
-            - /data2:/data2
-            - /data3:/data3
-            - /data4:/data4
-        extra_hosts:
-            - "kafka1:13.65.242.208"
-            - "zk1:13.65.242.208"
-            - "kafka2:13.84.50.174"
-            - "zk2:13.84.50.174"
-            - "kafka3:104.210.144.204"
-            - "zk3:104.210.144.204"
-
-    notebook:
-        image: sauloricci/all-spark-notebook
-        command: start-notebook.sh --NotebookApp.token='' --NotebookApp.ip='notebook' --NotebookApp.allow_origin='*'
-        hostname: notebook
-        deploy:
-            placement:
-                constraints: 
-                    - node.labels.type == master
-                    - node.labels.spark == true
-
-        environment:
-            TINI_SUBREAPER: "true"
-            GRANT_SUDO: "yes"
-            SPARK_PUBLIC_DNS: $EXTERNAL_IP
-            SPARK_OPTS: "--master=spark://master:7077"
-        links:
-            - master
-        expose:
-            - 8888
-        pid: "host"
-        volumes:
-            - /notebook:/home/jovyan/work
-    
-    proxy:
-       image: sauloricci/docker_spark_proxy
-       hostname: proxy
-       deploy:
-           placement:
-               constraints: 
-                - node.labels.type == master
-                - node.labels.spark == true
-       links:
-           - master
-           - notebook
-       ports:
-           - 666:666
-           - 667:667
-           - 4040:4040
-           - 4041:4041
