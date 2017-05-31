@@ -20,6 +20,7 @@ Spark History Server is available on `http://"ip of the master node":8080`
 - `docker stack ls` - see stacks and number of services
 - `docker stack ps spark_cluster` - see the services of the stack "spark-cluster"
 - `docker stack rm spark_cluster` - remove the stack "spark-cluster"
+- `docker service inspect --pretty spark_cluster_master` - get information about the master service
 
 ### Logs
 - `docker service ps SERVICE-NAME` - find which nodes the service is running
