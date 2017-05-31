@@ -1,6 +1,8 @@
 
 # Docker-Spark standalone
 
+**Current State:** _spark master is running, but worker is not connecting_
+
 simplified Version of infsaulo/docker-spark.
 The aim is to run a simple Sparkpi in a multi-node setup via docker swarm.
 
