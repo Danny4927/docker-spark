@@ -13,6 +13,13 @@ Make sure you modify the constrains int the `docker-compose.yml` according to th
 
 Spark History Server is available on `http://"ip of the master node":8080`
 
+## Usefull commands:
+
+- `docker stack ls` - see stacks and number of services
+- `docker stack ps spark_cluster` - see the services of the stack "spark-cluster"
+- `docker stack rm spark_cluster` - remove the stack "spark-cluster"
+
+
 ## license
 
 MIT
