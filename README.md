@@ -12,7 +12,7 @@ master (change hostname **node-1** to your real hostname):
 
 worker(change hostname **node-2** to your real hostname):
 
-`docker node update --label-add type=spark-worker node-1`
+`docker node update --label-add type=spark-worker node-2`
 
 Use:
 
