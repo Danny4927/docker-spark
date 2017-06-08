@@ -4,17 +4,19 @@
 simplified Version of infsaulo/docker-spark.
 The aim is to run a simple Sparkpi in a multi-node setup via docker swarm.
 
+## Labels
+
 To start the Spark cluster in standalone mode setup a docker swarm and add labels to the nodes:
 
-master (change hostname **node-1** to your real hostname):
+- master (change hostname **node-1** to your real hostname):
 
 `docker node update --label-add type=spark-master node-1`
 
-worker(change hostname **node-2** to your real hostname):
+- worker (change hostname **node-2** to your real hostname):
 
 `docker node update --label-add type=spark-worker node-2`
 
-Use:
+## Use:
 
 `docker stack deploy -c docker-compose.yml spark_cluster`
 
