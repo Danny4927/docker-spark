@@ -42,6 +42,10 @@ Spark History Server is available on `http://"ip of the master node":8080`
 
 If you are using the experimental daemon of docker you can also use: `docker service logs service-id`
 
+## Dockerfiles
+
+- [Spark-Master](https://github.com/Danny4927/docker-spark-master)
+- [Spark-Worker](https://github.com/Danny4927/docker-spark-worker)
 
 ## license
 
