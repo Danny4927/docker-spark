@@ -7,6 +7,8 @@ The aim is to run a simple Sparkpi in a multi-node setup via docker swarm.
 
 ## Labels
 
+- `docker node ls` - get the hostnames of the docker swarm
+
 To start the Spark cluster in standalone mode setup a docker swarm and add labels to the nodes:
 
 - master (change hostname **node-1** to your real hostname):
