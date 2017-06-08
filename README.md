@@ -1,8 +1,9 @@
 
 # Docker-Spark standalone
 
-simplified Version of infsaulo/docker-spark.
+simplified and updated Version of [infsaulo/docker-spark](https://github.com/infsaulo/docker-spark).
 The aim is to run a simple Sparkpi in a multi-node setup via docker swarm.
+[Compose File Version 3](https://docs.docker.com/compose/compose-file/) is used to do so.
 
 ## Labels
 
