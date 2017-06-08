@@ -25,11 +25,16 @@ To start the Spark cluster in standalone mode setup a docker swarm and add label
 
 to deploy spark to the cluster. 
 
+### Scale:
+
+- `docker service scale spark_cluster_worker=3` - to set the number of workers to 3
+
 **Note:** Without labels it won't work
 
 **Note2:** If you are using VirtualBox make sure the network is bridge and promiscous mode is allowed
 
 Spark History Server is available on `http://"ip of the master node":8080`
+
 
 ## Usefull commands:
 
