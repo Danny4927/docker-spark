@@ -47,7 +47,7 @@ Spark History Server is available on `http://"ip of the master node":8080`
 
 - `docker ps` - to get the container id
 - `docker exec -it container-id /bin/bash` - connect to shell of Spark Master (on Spark Master Node)
-- `./bin/spark-submit   --class org.apache.spark.examples.SparkPi   --master spark://master:7077   --executor-memory 1G   --total-executor-cores 1   ./examples/jars/spark-examples_2.11-2.1.1.jar   10` - run SparkPi
+- `./bin/spark-submit   --class org.apache.spark.examples.SparkPi   --master spark://master:7077   --executor-memory 1G   --total-executor-cores 1   ./examples/jars/spark-examples_2.11-2.2.0.jar   10` - run SparkPi
 
 ### Logs
 - `docker service ps SERVICE-NAME` - find which nodes the service is running
