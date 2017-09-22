@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+
+    master:
+        image: danny4927/docker-spark-master:2.0.2-hadoop-2.7.0
+        command: bin/spark-class org.apache.spark.deploy.master.Master -h master
+        hostname: master
+        deploy:
+            replicas: 1
+        environment:
+            MASTER: spark://master:7077
+        ports:
+            - 6066:6066
+            - 7077:7077
+            - 8080:8080
+    worker:
+        image: danny4927/docker-spark-worker:2.0.2-hadoop-2.7.0
+        command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
+        hostname: worker 
+        deploy:
+            replicas: 1 
+        environment:
+            SPARK_WORKER_PORT: 8881
+            SPARK_WORKER_WEBUI_PORT: 8081
+        depends_on:
+             - "master"
+    restapi:
+        image: depend/spark-jobserver:spark-2.0-preview.mesos-0.28.2.spark-2.0.2.scala-2.11.jdk-8u121
+        hostname: restapi
+        deploy:
+           replicas: 1
+        environment:   
+           MASTER: spark://master:7077
+        ports:
+             - 8090:8090
+        depends_on:
+             - "master"
