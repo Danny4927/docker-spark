@@ -3,7 +3,7 @@ version: "3"
 services:
 
     master:
-        image: danny4927/docker-spark-master
+        image: danny4927/docker-spark-master:2.2.0-hadoop-2.8.1
         command: bin/spark-class org.apache.spark.deploy.master.Master -h master
         hostname: master
         deploy:
@@ -18,7 +18,7 @@ services:
             - 7077:7077
             - 8080:8080
     worker:
-        image: danny4927/docker-spark-worker
+        image: danny4927/docker-spark-worker:2.2.0-hadoop-2.8.1
         command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
         hostname: worker 
         deploy:
